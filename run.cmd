@@ -21,6 +21,4 @@ cmake.exe -G"MinGW Makefiles" ^
 -DCPK_ACTION="%1" ^
 -DCPK_ACTION_TARGET="%2" ^
 -B./build &&^
-cd build &&^
-cmake --build . &&^
-echo "Successful"
+echo done
