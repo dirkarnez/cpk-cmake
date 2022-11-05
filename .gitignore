@@ -1,2 +1,4 @@
 *.zip
-./external
+external
+downloads
+build

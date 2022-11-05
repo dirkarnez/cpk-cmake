@@ -18,8 +18,9 @@ SET PATH=^
 
 cmake.exe -G"MinGW Makefiles" ^
 -DCMAKE_BUILD_TYPE=Debug ^
+-DCPK_ACTION="%1" ^
+-DCPK_ACTION_TARGET="%2" ^
 -B./build &&^
 cd build &&^
 cmake --build . &&^
-echo "Successful build"
-pause
+echo "Successful"
