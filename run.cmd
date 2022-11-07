@@ -23,3 +23,4 @@ cmake.exe -G"MinGW Makefiles" ^
 -B./build &&^
 rmdir /s /q build &&^
 echo done
+pause

@@ -13,6 +13,16 @@ list (LENGTH cpk_libraries length)
 # message(${CPK_ACTION})
 # message(${CPK_ACTION_TARGET})
 
+
+file(READ "json_example.json" EXAMPLE_JSON)
+
+string(JSON EXAMPLE_JSON_FIRST_ITEM GET ${EXAMPLE_JSON} 1)
+message(${EXAMPLE_JSON_FIRST_ITEM})
+
+string(JSON EXAMPLE_JSON_UPDATED SET ${EXAMPLE_JSON} 1 "\"c\"")
+message(${EXAMPLE_JSON_UPDATED})
+file(WRITE "json_example.json" ${EXAMPLE_JSON_UPDATED})
+
 if(${CPK_ACTION} STREQUAL "install")
     if(NOT DEFINED ${CPK_ACTION_TARGET}_download_link)
         message(FATAL_ERROR "No such library ${CPK_ACTION_TARGET}")
