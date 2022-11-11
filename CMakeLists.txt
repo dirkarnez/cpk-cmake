@@ -51,6 +51,50 @@ elseif(${CPK_ACTION} STREQUAL "build")
 elseif(${CPK_ACTION} STREQUAL "init")
 	# app + lib
 
+	execute_process(COMMAND "C:/Windows/System32/where" "gcc" OUTPUT_VARIABLE GCC_LOCATION)
+	string(REGEX REPLACE "\n$" "" GCC_LOCATION "${GCC_LOCATION}")
+	file(TO_CMAKE_PATH ${GCC_LOCATION} GCC_LOCATION_NATIVE)
+	message(STATUS "gcc found at ${GCC_LOCATION_NATIVE}")
+	
+
+	file(WRITE ${CPK_PROJECT}/.vscodeyoyoy/c_cpp_properties.json
+"{
+    \"configurations\": [
+        {
+            \"name\": \"Win32\",
+            \"includePath\": [
+                \"${workspaceFolder}/**\"
+            ],
+            \"defines\": [
+                \"_DEBUG\",
+                \"UNICODE\",
+                \"_UNICODE\"
+            ],
+            \"windowsSdkVersion\": \"10.0.18362.0\",
+            \"compilerPath\": \"${GCC_LOCATION_NATIVE}\",
+            \"cStandard\": \"c11\",
+            \"cppStandard\": \"c++17\",
+            \"intelliSenseMode\": \"${default}\"
+        }
+    ],
+    \"version\": 4
+}
+"
+)
+	file(WRITE ${CPK_PROJECT}/.gitignore
+"/build
+/cmake-build
+.vscode/settings.json
+"
+	)
+
+	file(WRITE ${CPK_PROJECT}/yoyoy/main.cpp 
+"#include <iostream>
+
+int main() {
+	std::cout << \"Hello World!\";
+	return 0;
+}")
 else()
     message(STATUS "Nothing to do")
 endif()
