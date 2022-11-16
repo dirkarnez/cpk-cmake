@@ -7,6 +7,7 @@ set(mbedtls_download_link "https://github.com/dirkarnez/mbedtls-prebuilt/release
 set(openssl_download_link "https://github.com/dirkarnez/openssl-prebuilt/releases/download/v3.0.5/openssl-v3.0.5-x86_64-posix-seh-rev0-8.1.0.zip")
 set(stl_reader_download_link "https://github.com/dirkarnez/stl_reader-prebuilt/releases/download/v1.0.0/stl_reader-v1.0.0-x86_64-posix-seh-rev0-8.1.0.zip")
 set(boost_download_link "https://github.com/dirkarnez/boost-prebuilt/releases/download/v1.80.0/boost-v1.80.0-x86_64-posix-seh-rev0-8.1.0.zip")
+set(winreg_download_link "https://github.com/dirkarnez/WinReg-prebuilt/releases/download/v6.1.0/WinReg-v6.1.0-x86_64-posix-seh-rev0-8.1.0.zip")
 
 list (LENGTH cpk_libraries length)
 # message (">>> LENGTH: ${length}")
@@ -41,7 +42,8 @@ elseif(${CPK_ACTION} STREQUAL "build")
 		"-GMinGW Makefiles" 
 		"-Bcmake-build" 
 		"-DCMAKE_BUILD_TYPE=Debug" 
-		"-DBOOST_ROOT=${BOOST_ROOT}"
+		"-DWinReg_DIR=${PROJECT_SOURCE_DIR}/external/WinReg-v6.1.0-x86_64-posix-seh-rev0-8.1.0/lib/cmake/WinReg"
+		# "-DBOOST_ROOT=${BOOST_ROOT}"
 		WORKING_DIRECTORY ${CPK_PROJECT})
 
 	execute_process(COMMAND cmake 
