@@ -8,7 +8,8 @@ set(openssl_download_link "https://github.com/dirkarnez/openssl-prebuilt/release
 set(stl_reader_download_link "https://github.com/dirkarnez/stl_reader-prebuilt/releases/download/v1.0.0/stl_reader-v1.0.0-x86_64-posix-seh-rev0-8.1.0.zip")
 set(boost_download_link "https://github.com/dirkarnez/boost-prebuilt/releases/download/v1.80.0/boost-v1.80.0-x86_64-posix-seh-rev0-8.1.0.zip")
 set(winreg_download_link "https://github.com/dirkarnez/WinReg-prebuilt/releases/download/v6.1.0/WinReg-v6.1.0-x86_64-posix-seh-rev0-8.1.0.zip")
-
+set(winreg_download_link "https://github.com/dirkarnez/WinReg-prebuilt/releases/download/v6.1.0/WinReg-v6.1.0-x86_64-posix-seh-rev0-8.1.0.zip")
+set(numcpp_download_link "https://github.com/dirkarnez/NumCpp-prebuilt/releases/download/v2.8.0/NumCpp-v2.8.0-x86_64-posix-seh-rev0-8.1.0.zip")
 list (LENGTH cpk_libraries length)
 # message (">>> LENGTH: ${length}")
 
@@ -37,13 +38,13 @@ elseif(${CPK_ACTION} STREQUAL "build")
 	message(STATUS "Building ${CPK_PROJECT}")
 	# generate cmake build
 	set(BOOST_ROOT "${PROJECT_SOURCE_DIR}/external/boost-v1.80.0-x86_64-posix-seh-rev0-8.1.0/lib/cmake/Boost-1.80.0")
-	
+
 	execute_process(COMMAND cmake 
 		"-GMinGW Makefiles" 
 		"-Bcmake-build" 
 		"-DCMAKE_BUILD_TYPE=Debug" 
-		"-DWinReg_DIR=${PROJECT_SOURCE_DIR}/external/WinReg-v6.1.0-x86_64-posix-seh-rev0-8.1.0/lib/cmake/WinReg"
-		# "-DBOOST_ROOT=${BOOST_ROOT}"
+		"-DNumCpp_DIR=${PROJECT_SOURCE_DIR}/external/NumCpp-v2.8.0-x86_64-posix-seh-rev0-8.1.0/share/NumCpp/cmake"
+		"-DBOOST_ROOT=${BOOST_ROOT}"
 		WORKING_DIRECTORY ${CPK_PROJECT})
 
 	execute_process(COMMAND cmake 
@@ -75,8 +76,7 @@ elseif(${CPK_ACTION} STREQUAL "init")
             \"windowsSdkVersion\": \"10.0.18362.0\",
             \"compilerPath\": \"${GCC_LOCATION_NATIVE}\",
             \"cStandard\": \"c11\",
-            \"cppStandard\": \"c++17\",
-            \"intelliSenseMode\": \"${default}\"
+            \"cppStandard\": \"c++17\"
         }
     ],
     \"version\": 4
