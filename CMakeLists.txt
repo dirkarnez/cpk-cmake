@@ -97,6 +97,9 @@ int main() {
 	std::cout << \"Hello World!\";
 	return 0;
 }")
+elseif(${CPK_ACTION} STREQUAL "disassemble")
+	# TODO: get .exe name from cmake configuration
+	execute_process(COMMAND objdump "-S" "numcpp-playground.exe" WORKING_DIRECTORY ${CPK_PROJECT}/cmake-build)
 else()
     message(STATUS "Nothing to do")
 endif()
