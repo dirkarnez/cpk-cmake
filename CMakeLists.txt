@@ -99,7 +99,12 @@ int main() {
 }")
 elseif(${CPK_ACTION} STREQUAL "disassemble")
 	# TODO: get .exe name from cmake configuration
-	execute_process(COMMAND objdump "-S" "numcpp-playground.exe" WORKING_DIRECTORY ${CPK_PROJECT}/cmake-build)
+	execute_process(COMMAND "objdump" "-S" "numcpp-playground.exe" 
+		WORKING_DIRECTORY ${CPK_PROJECT}/cmake-build
+		OUTPUT_VARIABLE OBJDUMP_TEXT)
+
+	file(WRITE ${CPK_PROJECT}/cmake-build/numcpp-playground_objdump.txt ${OBJDUMP_TEXT})
+	message("tfgdfg ${PARENT_PROJECT_NAME}")
 else()
     message(STATUS "Nothing to do")
 endif()
