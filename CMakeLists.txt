@@ -36,14 +36,16 @@ if(${CPK_ACTION} STREQUAL "install")
 elseif(${CPK_ACTION} STREQUAL "build")
 	set(CPK_ACTION_TARGET "")
 	message(STATUS "Building ${CPK_PROJECT}")
+
 	# generate cmake build
 	set(BOOST_ROOT "${PROJECT_SOURCE_DIR}/external/boost-v1.80.0-x86_64-posix-seh-rev0-8.1.0/lib/cmake/Boost-1.80.0")
 
+	# "-DNumCpp_DIR=${PROJECT_SOURCE_DIR}/external/NumCpp-v2.8.0-x86_64-posix-seh-rev0-8.1.0/share/NumCpp/cmake"
+	
 	execute_process(COMMAND cmake 
 		"-GMinGW Makefiles" 
 		"-Bcmake-build" 
 		"-DCMAKE_BUILD_TYPE=Debug" 
-		"-DNumCpp_DIR=${PROJECT_SOURCE_DIR}/external/NumCpp-v2.8.0-x86_64-posix-seh-rev0-8.1.0/share/NumCpp/cmake"
 		"-DBOOST_ROOT=${BOOST_ROOT}"
 		WORKING_DIRECTORY ${CPK_PROJECT})
 
