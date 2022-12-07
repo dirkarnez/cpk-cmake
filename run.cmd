@@ -2,7 +2,7 @@ REM run as Administrator
 @echo off
 
 set DOWNLOADS_DIR=%USERPROFILE%\Downloads
-set DOWNLOADS_DIR_LINUX=%DOWNLOAD_DIR:\=/%
+set DOWNLOADS_DIR_LINUX=%DOWNLOADS_DIR:\=/%
 
 SET PATH=^
 %DOWNLOADS_DIR%\PortableGit\bin;^
