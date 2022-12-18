@@ -3,6 +3,7 @@ cpk-cmake
 ### TODOs
 - [ ] init (vscode settings, `%PATH%`, compiler)
 - [ ] local-build builder
+- [ ] cached variables
 - [x] json reader
 - [ ] package registry
 - [ ] emscripten support
